@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -39,7 +40,7 @@ public class Hello {
         return bs.bookToJSON(bs.findBookByISBN(ISBN));
 
     }
-
+    // not nessesary
     @GetMapping(value="api/book/404")
     @ResponseBody
     private String error404(){
@@ -52,4 +53,10 @@ public class Hello {
         return bs.bookListToJSON(bs.findBookWithCategory(categoryName));
     }
 
+    @RequestMapping (value="api/search", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    private String getBooksContainingPhrase(HttpServletRequest request){
+        return bs.bookListToJSON(bs.getBookListWithPhrase(request.getParameter("q")));
+
+    }
 }
