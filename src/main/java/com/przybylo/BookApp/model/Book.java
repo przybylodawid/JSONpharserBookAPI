@@ -47,7 +47,7 @@ public class Book {
     // checking if ISBN 13 is present
     // if ISBN_13 is present is not null ---- > RETURN value of ISBN_13
     // if ISBN_13 is missing return ID
-    private String getProperId(BookJSON bookjson){
+    public String getProperId(BookJSON bookjson){
         List<IndustryIdentifier> IIList = bookjson.getVolumeInfo().getIndustryIdentifiers();
         if (IIList == null){
             return bookjson.getId();
