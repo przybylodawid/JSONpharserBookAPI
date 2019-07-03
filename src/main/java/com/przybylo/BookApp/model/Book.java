@@ -22,7 +22,7 @@ public class Book {
     private String thumbnailUrl;
     private String language;
     private String previewLink;
-    private double averageRating;
+    private Double averageRating;
 
     // i put Lists instead of Arrays to have access to collection methods
     private List<String> authors;
@@ -140,11 +140,11 @@ public class Book {
         this.previewLink = previewLink;
     }
 
-    public double getAverageRating() {
+    public Double getAverageRating() {
         return averageRating;
     }
 
-    public void setAverageRating(double averageRating) {
+    public void setAverageRating(Double averageRating) {
         this.averageRating = averageRating;
     }
 
