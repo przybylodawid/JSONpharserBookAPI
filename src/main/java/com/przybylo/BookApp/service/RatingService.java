@@ -35,6 +35,7 @@ public class RatingService {
             int bookCounter = 0;
             double ratingSum = 0;
                 for (Book book : books) {
+                    // I made assumption that Rate 0 = unrated
                     if (book.getAverageRating() != null
                         && book.getAverageRating() != 0
                         && book.getAuthors() != null
