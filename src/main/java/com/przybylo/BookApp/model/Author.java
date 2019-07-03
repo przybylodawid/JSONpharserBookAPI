@@ -19,4 +19,12 @@ public class Author {
     public void setAvgRating(double avgRating) {
         this.avgRating = avgRating;
     }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "fullName='" + fullName + '\'' +
+                ", avgRating=" + avgRating +
+                '}';
+    }
 }

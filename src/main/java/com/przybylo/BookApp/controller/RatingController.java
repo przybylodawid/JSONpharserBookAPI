@@ -16,8 +16,9 @@ public class RatingController {
     @RequestMapping(value="api/rating", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     private String getListAuthorsByRating(){
+    rs.test();
 
 
-        return "hi";
+        return rs.getAuthorsList().toString();
     }
 }
