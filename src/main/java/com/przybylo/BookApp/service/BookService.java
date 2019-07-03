@@ -66,7 +66,7 @@ public class BookService {
         return books;
     }
 
-    // I could also use a Set to prevent double record in that List.
+    // I could also use a Set to prevent double records in List.
     public List<Book> getBookListWithPhrase(String phrase) {
         List<Book> books = new ArrayList<>();
         phrase.replaceAll("%20", " ");
