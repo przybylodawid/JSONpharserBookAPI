@@ -5,7 +5,9 @@ import com.przybylo.BookApp.model.Book;
 import com.przybylo.BookApp.model.JsonPharser.BookJSON;
 import com.przybylo.BookApp.model.JsonPharser.Libery;
 import com.przybylo.BookApp.tools.JsonReciver;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,9 +61,7 @@ public class BookService {
                     }
                 }
             }
-
         }
-
         return books;
     }
 
@@ -79,7 +79,10 @@ public class BookService {
     // ============ PARSING TO JSON ===============
 
     public String bookListToJSON(List<Book> books){
-        if (books == null){ return "404 ELEMENT NOT FOUND";}
+        if (books == null){
+            List<Book> emptyList = new ArrayList<>();
+            return gson.toJson(emptyList);
+        }
         return gson.toJson(books);
 
     }
@@ -88,7 +91,9 @@ public class BookService {
         if (book != null){
             return gson.toJson(book);
             }
-        return "404 ELEMENT NOT FOUND";
+        throw new ResponseStatusException(
+                HttpStatus.NOT_FOUND, "Error 404 - No book found matching criteria"
+        );
 
     }
 
