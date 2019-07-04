@@ -13,12 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 public class ConfigController {
 
     @Autowired
-    private Config config;
-
-    @Autowired
-    private BookService bs;
-
-    @Autowired
     private ConfigService cs;
 
     @PostMapping("api/config")

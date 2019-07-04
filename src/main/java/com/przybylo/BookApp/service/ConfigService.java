@@ -17,7 +17,7 @@ public class ConfigService {
     public void initializeConfig(HttpServletRequest request) {
         config.setPath(request.getParameter("filepath"));
         config.setType(request.getParameter("type"));
-        if (config.getType() == null || config.getPath() == null) {
+        if (config.getType() == null || config.getPath() == null || config.getPath().equals("") ) {
             config.setType("link");
             config.setPath("https://www.googleapis.com/books/v1/volumes?q=java&maxResults=40");
         }

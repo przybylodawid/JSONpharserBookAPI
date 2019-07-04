@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+// Class for testing server health. Few additional endpoinds:
+//      - api/hello
+//      - api/book/json
+//      - api/book/all
+//      - api/book/404
+
 @Controller
 public class Hello {
 

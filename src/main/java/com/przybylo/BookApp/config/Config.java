@@ -2,6 +2,10 @@ package com.przybylo.BookApp.config;
 
 import org.springframework.stereotype.Component;
 
+//          This class contains an config object that was given by user
+//          on endpoint config from form in index.html
+
+
 @Component
 public class Config {
     private String path;

@@ -37,10 +37,10 @@ public class BookService {
 
         public void initializeBookList(){
         bookList = new ArrayList<>();
-        String jsonString = null;
-        Libery libery = null;
-        LiberyFromFile liberyFromFile = null;
-        List<BookJSON> booksJSON = null;
+        String jsonString;
+        Libery libery;
+        LiberyFromFile liberyFromFile;
+        List<BookJSON> booksJSON;
 
             if (config.getType().equals("link")){
             jsonString = jsonReciver.reciveJSON(config.getPath());
