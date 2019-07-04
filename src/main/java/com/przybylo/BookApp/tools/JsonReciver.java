@@ -11,15 +11,12 @@ import java.net.URL;
 
 @Component
 public class JsonReciver {
-    final String dLink = "https://www.googleapis.com/books/v1/volumes?q=java&maxResults=40";
 
-
-    public String reciveJSON(String configlink){
+    public String reciveJSON(String configLink){
         StringBuffer response = new StringBuffer();
 
         try {
-            //TODO: allow user to change parameter
-            URL url = new URL(dLink);
+            URL url = new URL(configLink);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(connection.getInputStream()));

@@ -1,10 +1,14 @@
 package com.przybylo.BookApp.service;
 
 import com.google.gson.Gson;
+import com.przybylo.BookApp.config.Config;
 import com.przybylo.BookApp.model.Book;
 import com.przybylo.BookApp.model.JsonPharser.BookJSON;
 import com.przybylo.BookApp.model.JsonPharser.Libery;
+import com.przybylo.BookApp.model.JsonPharser.LiberyFromFile;
+import com.przybylo.BookApp.tools.JsonReader;
 import com.przybylo.BookApp.tools.JsonReciver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -19,25 +23,45 @@ public class BookService {
 
     private List<Book> bookList;
 
-    Gson gson = new Gson();
+    @Autowired
+    private JsonReciver jsonReciver;
 
-    // ============ CONSTRUCTOR ===============
+    @Autowired
+    private Config config;
 
-    public BookService() {
+    @Autowired
+    private Gson gson;
+
+    @Autowired
+    private JsonReader jsonReader;
+
+        public void initializeBookList(){
         bookList = new ArrayList<>();
+        String jsonString = null;
+        Libery libery = null;
+        LiberyFromFile liberyFromFile = null;
+        List<BookJSON> booksJSON = null;
 
-        JsonReciver jsonReciver = new JsonReciver();
-        String jsonString = jsonReciver.reciveJSON("test");
-        Gson gson = new Gson();
+            if (config.getType().equals("link")){
+            jsonString = jsonReciver.reciveJSON(config.getPath());
+            libery = gson.fromJson(jsonString, Libery.class);
+            booksJSON = libery.getItems();
 
-        Libery libery = gson.fromJson(jsonString, Libery.class);
-        List<BookJSON> booksJSON = libery.getItems();
+            }else{ //config.getType().equals("path")
+            jsonString = jsonReader.getJSONStringFromFile(config.getPath());
+            liberyFromFile = gson.fromJson(jsonString, LiberyFromFile.class);
+            booksJSON = liberyFromFile.getItems();
+            }
+
+
+
+
+
         for (BookJSON bookJSON : booksJSON) {
             Book book = new Book();
             book.mapFromJson(bookJSON);
             bookList.add(book);
         }
-
     }
 
     // ============ BOOK SERVICE METHODS ===============
