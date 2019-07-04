@@ -5,6 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+//              Class to convert type  YYYY or YYYY-MM or YYYY-MM-DD
+//              to unix format
+
 public class DataConverter {
     private final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 

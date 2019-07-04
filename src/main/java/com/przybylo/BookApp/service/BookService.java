@@ -54,9 +54,6 @@ public class BookService {
             }
 
 
-
-
-
         for (BookJSON bookJSON : booksJSON) {
             Book book = new Book();
             book.mapFromJson(bookJSON);

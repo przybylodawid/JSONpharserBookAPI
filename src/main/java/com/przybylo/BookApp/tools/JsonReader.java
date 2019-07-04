@@ -7,13 +7,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+//          JSONReader reads file and return one big String
+
 @Component
 public class JsonReader {
 
     public String getJSONStringFromFile(String path) {
         StringBuilder sb = new StringBuilder();
 
-        String line = null;
+        String line;
         try {
 
             FileReader fileReader = new FileReader(path);

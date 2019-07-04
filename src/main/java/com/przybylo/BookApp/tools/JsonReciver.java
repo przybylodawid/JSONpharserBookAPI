@@ -9,6 +9,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+//          JSONReader reads URL JSON Content and return it as a String
+
 @Component
 public class JsonReciver {
 
