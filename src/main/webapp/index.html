@@ -5,13 +5,23 @@
     <title>APP Configuration</title>
 </head>
 <body>
-<h1>test</h1>
+<h1>BookApi</h1>
+<h2>Config Page</h2>
 <form action="api/config" method="POST">
+    Put source of your JSON here:<br>
     <input type="text" name="filepath"><br>
-    <input type="radio" name="type" value="link"> Link<br>
-    <input type="radio" name="type" value="path"> Path<br><br>
-    <input type="submit" value="Submit">
+    <input type="radio" name="type" value="Remote Link"> Link<br>
+    <input type="radio" name="type" value="Local Path"> Path<br><br>
+    <input type="submit" value="Submit" >
 </form>
+
+<h3>WARNING:</h3>
+<b>Please be sure you provide accurate Data!!!</b><br>
+URL Egzample:  https://www.googleapis.com/books/v1/volumes?q=java&maxResults=40<br>
+Local Path Egzample: /home/dawid/Pobrane/cognifide/books.json <br>
+Local Path Egzample: C:\Users\Dawid.PRZYBYLO\Pobrane\books.json<br>
+<b>Note:</b><br>
+If no source or type will be provided, configuration will run as default.
 
 </body>
 </html>
