@@ -1,5 +1,6 @@
 package com.przybylo.BookApp.service;
 
+import com.google.gson.Gson;
 import com.przybylo.BookApp.model.Book;
 import com.przybylo.BookApp.model.Author;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class RatingService {
@@ -16,11 +18,15 @@ public class RatingService {
 
     @Autowired
     private BookService bs;
+    @Autowired
+    private Gson gson;
 
-    public void test() {
+
+    // Get list of authors => Loop authors => For every author loop books, and check for the rating
+    // If Author's book is rated (rating 0 or null means not rated) add Author with rating to the list
+    public void initiateAuthorList() {
         authorsList = new ArrayList<>();
-
-        // getting set of Authors first
+        //getting set of Authors first
         Set<String> authorNames = new HashSet<>();
         List<Book> books = bs.getBookList();
         if (books != null) {
@@ -55,17 +61,28 @@ public class RatingService {
         }
     }
 
-    // ============ Constructor ===============
 
-    public RatingService() {
+    // ============ PARSING TO JSON ===============
+
+    public String authorListToJSON(List<Author> authors) {
+        if (authors == null) {
+            List<Author> emptyList = new ArrayList<>();
+            return gson.toJson(emptyList);
+        }
+        return gson.toJson(authors);
+
     }
+
 
 
     // ============ SETTERS AND GETTER ===============
 
 
     public List<Author> getAuthorsList() {
-        return authorsList;
+        initiateAuthorList();
+        return authorsList.stream()
+                .sorted((author1, author2) -> author1.getAvgRating()> author2.getAvgRating()? -1:1)
+                .collect(Collectors.toList());
     }
 
     public void setAuthorsList(List<Author> authorsList) {
