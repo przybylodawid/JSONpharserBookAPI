@@ -40,10 +40,10 @@ public class Hello {
     }
 
     // not nessesary
-    @GetMapping(value="api/book/404")
+    @GetMapping(value="api/book/nonexisting")
     @ResponseBody
     private String error404(){
-        return "404 - ELEMENT NOT FOUND";
+        return "404 \"No results found\"";
     }
 
 
